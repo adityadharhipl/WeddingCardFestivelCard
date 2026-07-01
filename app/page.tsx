@@ -476,6 +476,20 @@ export default function HomePage() {
     toast.success('Package added to cart! 🛒');
   };
 
+  const addCustomCardToCart = () => {
+    const isPremiumStyle = TEMPLATE_STYLES.findIndex(s => s.id === aiForm.selectedStyle) >= 15;
+    const price = isPremiumStyle ? 199 : 0;
+    const styleName = TEMPLATE_STYLES.find(s => s.id === aiForm.selectedStyle)?.name || 'Style';
+
+    addToCart({
+      _id: `custom_${Date.now()}`,
+      title: `Custom Card (${aiForm.eventType}) - ${styleName}`,
+      category: 'ai',
+      imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=200',
+      price: price
+    });
+  };
+
   const removeFromCart = (id: string) => {
     setCart(prev => prev.filter(i => i._id !== id));
     toast('Removed from cart', { icon: '🗑️' });
@@ -1471,9 +1485,27 @@ export default function HomePage() {
                     }}
                     dangerouslySetInnerHTML={{ __html: generatedSvg }}
                   />
-                  <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={downloadAiCardAsPDF}>
-                    📥 Download PDF Card
-                  </button>
+                  <div style={{ display: 'flex', gap: 12 }}>
+                    <button className="btn-primary" style={{ flex: 1, justifyContent: 'center' }} onClick={downloadAiCardAsPDF}>
+                      📥 Download PDF
+                    </button>
+                    <button
+                      className="btn-ghost"
+                      style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        borderRadius: 100,
+                        background: 'var(--surface-2)',
+                        border: '1px solid var(--border-soft)',
+                        fontSize: 13,
+                        fontWeight: 600,
+                        cursor: 'pointer'
+                      }}
+                      onClick={addCustomCardToCart}
+                    >
+                      🛒 Add to Cart
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <div style={{ textAlign: 'center', color: 'var(--ink-soft)' }}>
