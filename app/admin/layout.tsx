@@ -12,6 +12,7 @@ const NAV = [
   { href: '/admin/orders', icon: '💰', label: 'Payments & Orders' },
   { href: '/admin/users', icon: '👥', label: 'User Accounts' },
   { href: '/admin/settings', icon: '⚙️', label: 'Settings' },
+  { href: '/admin/profile', icon: '👤', label: 'Profile' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -34,8 +35,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             router.push('/');
           } else {
             setRole(data.role);
-            if (data.role === 'user' && !['/admin/ai-generator'].includes(pathname)) {
-               toast.error('Access restricted. You can only use the AI Generator.');
+            if (data.role === 'user' && !['/admin/ai-generator', '/admin/profile'].includes(pathname)) {
+               toast.error('Access restricted. You can only use the AI Generator or your Profile.');
                router.push('/admin/ai-generator');
             } else {
                setCheckingAuth(false);
@@ -124,7 +125,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           }}>
             Navigation
           </p>
-          {NAV.filter(item => role === 'admin' || ['AI Generator'].includes(item.label)).map(item => (
+          {NAV.filter(item => role === 'admin' || ['AI Generator', 'Profile'].includes(item.label)).map(item => (
             <a
               key={item.href}
               href={item.href}
