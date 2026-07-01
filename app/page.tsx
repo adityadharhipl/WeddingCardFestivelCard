@@ -100,6 +100,28 @@ export default function HomePage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
   const [heroVideoSrc, setHeroVideoSrc] = useState('/uploads/3936463-hd_1920_1080_25fps.mp4');
+  const [videoLoading, setVideoLoading] = useState(true);
+
+  // Hero Slogan Cycling Text
+  const SLOGANS = [
+    { line1: 'Dream Wedding', line2: 'come true' },
+    { line1: 'Magical Birthday', line2: 'Parties' },
+    { line1: 'Elegant Anniversary', line2: 'Cards' },
+    { line1: 'Festive Events &', line2: 'Celebrations' },
+    { line1: 'Premium Digital', line2: 'Invitations' }
+  ];
+  const [sloganIndex, setSloganIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSloganIndex(prev => (prev + 1) % SLOGANS.length);
+    }, 10000); // 10 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setVideoLoading(true);
+  }, [heroVideoSrc]);
 
   // Contact Form states
   const [contactName, setContactName] = useState('');
@@ -324,7 +346,13 @@ export default function HomePage() {
         body: JSON.stringify({ email: authEmail.trim(), password: authPassword }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
+      if (!res.ok) {
+        if (res.status === 409 && authTab === 'register') {
+          setAuthTab('login');
+          throw new Error('This email is already registered! Please sign in instead.');
+        }
+        throw new Error(data.error || 'Authentication failed');
+      }
 
       toast.success(authTab === 'login' ? 'Successfully logged in! 👋' : 'Registered successfully! Pending Admin verification ⏳');
       setCurrentUser({ email: authEmail.trim(), role: data.role || 'user', isApproved: data.isApproved || false });
@@ -920,8 +948,19 @@ export default function HomePage() {
             color: 'var(--fg)',
             letterSpacing: '-0.02em',
           }}>
-            Dream Wedding <br />
-            come true
+            <span
+              key={`line1-${sloganIndex}`}
+              style={{ display: 'inline-block', animation: 'float-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards' }}
+            >
+              {SLOGANS[sloganIndex].line1}
+            </span>
+            <br />
+            <span
+              key={`line2-${sloganIndex}`}
+              style={{ display: 'inline-block', opacity: 0, animation: 'float-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards', animationDelay: '0.1s' }}
+            >
+              {SLOGANS[sloganIndex].line2}
+            </span>
           </h1>
           <p style={{
             color: 'var(--ink-soft)',
@@ -1089,15 +1128,26 @@ export default function HomePage() {
             aspectRatio: '16/10',
             background: '#000',
           }}>
+            {videoLoading && (
+              <div style={{
+                position: 'absolute', inset: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: '#000', zIndex: 5
+              }}>
+                <div className="spinner" style={{ width: 40, height: 40, border: '3px solid rgba(255,255,255,0.1)', borderTopColor: 'var(--accent)' }} />
+              </div>
+            )}
             <video
               key={heroVideoSrc} // Key forces React to reload and replay the video automatically when source changes!
               src={heroVideoSrc}
-              poster="/uploads/1782891959586-qd10sq48dg.jpg"
               autoPlay
               loop
               muted
               playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onWaiting={() => setVideoLoading(true)}
+              onCanPlay={() => setVideoLoading(false)}
+              onPlaying={() => setVideoLoading(false)}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: videoLoading ? 0 : 1, transition: 'opacity 0.3s ease' }}
             />
           </div>
 
