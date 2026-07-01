@@ -19,6 +19,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [role, setRole] = useState<string | null>(null);
 
   // Force dark mode for admin layout and verify admin session
   useEffect(() => {
@@ -28,11 +29,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       fetch('/api/auth/me')
         .then(r => r.json())
         .then(data => {
-          if (!data.authenticated || data.role !== 'admin') {
-            toast.error('Unauthorized! Access restricted to Admin only.');
+          if (!data.authenticated || (data.role !== 'admin' && data.role !== 'user')) {
+            toast.error('Unauthorized! Access restricted.');
             router.push('/');
           } else {
-            setCheckingAuth(false);
+            setRole(data.role);
+            if (data.role === 'user' && !['/admin/upload', '/admin/gallery'].includes(pathname)) {
+               toast.error('Access restricted. You can only view Upload and Gallery.');
+               router.push('/admin/upload');
+            } else {
+               setCheckingAuth(false);
+            }
           }
         })
         .catch(() => {
@@ -117,7 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           }}>
             Navigation
           </p>
-          {NAV.map(item => (
+          {NAV.filter(item => role === 'admin' || ['Upload Image', 'Gallery'].includes(item.label)).map(item => (
             <a
               key={item.href}
               href={item.href}
@@ -169,7 +176,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               Dwivedi's Gallery Management
             </p>
           </div>
-          <div className="badge badge-accent">Admin</div>
+          <div className="badge badge-accent" style={{ textTransform: 'capitalize' }}>{role || 'Admin'}</div>
         </div>
 
         {/* Page content */}
