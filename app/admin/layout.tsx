@@ -34,9 +34,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             router.push('/');
           } else {
             setRole(data.role);
-            if (data.role === 'user' && !['/admin/upload', '/admin/gallery'].includes(pathname)) {
-               toast.error('Access restricted. You can only view Upload and Gallery.');
-               router.push('/admin/upload');
+            if (data.role === 'user' && !['/admin/ai-generator'].includes(pathname)) {
+               toast.error('Access restricted. You can only use the AI Generator.');
+               router.push('/admin/ai-generator');
             } else {
                setCheckingAuth(false);
             }
@@ -124,7 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           }}>
             Navigation
           </p>
-          {NAV.filter(item => role === 'admin' || ['Upload Image', 'Gallery'].includes(item.label)).map(item => (
+          {NAV.filter(item => role === 'admin' || ['AI Generator'].includes(item.label)).map(item => (
             <a
               key={item.href}
               href={item.href}
