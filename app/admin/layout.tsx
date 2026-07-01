@@ -32,7 +32,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         .then(data => {
           if (!data.authenticated || (data.role !== 'admin' && data.role !== 'user')) {
             toast.error('Unauthorized! Access restricted.');
-            router.push('/');
+            router.push('/admin/login');
           } else {
             setRole(data.role);
             if (data.role === 'user' && !['/admin/ai-generator', '/admin/profile'].includes(pathname)) {
@@ -44,7 +44,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           }
         })
         .catch(() => {
-          router.push('/');
+          router.push('/admin/login');
         });
     } else {
       setCheckingAuth(false);

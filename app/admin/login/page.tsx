@@ -30,8 +30,11 @@ export default function AdminLoginPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Login failed');
       toast.success('Welcome back! 👋');
-      router.push('/admin');
+      // Refresh first so cookie is registered, then navigate
       router.refresh();
+      setTimeout(() => {
+        router.push(data.role === 'admin' ? '/admin' : '/admin/ai-generator');
+      }, 100);
     } catch (err: any) {
       toast.error(err.message || 'Invalid credentials');
     } finally {
