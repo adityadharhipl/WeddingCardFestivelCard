@@ -6,7 +6,7 @@ import { getAdminSession } from '@/lib/auth';
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getAdminSession();
@@ -15,10 +15,11 @@ export async function PATCH(
     }
 
     const { status } = await req.json();
+    const { id } = await params;
     await dbConnect();
 
     const order = await Order.findByIdAndUpdate(
-      params.id,
+      id,
       { status },
       { new: true }
     );
