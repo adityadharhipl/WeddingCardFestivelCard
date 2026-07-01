@@ -859,6 +859,34 @@ export default function HomePage() {
           >
             AI Generator 🤖
           </button>
+          <a
+            href="/admin"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              padding: '8px 18px',
+              borderRadius: 100,
+              background: 'linear-gradient(135deg, var(--accent), #a855f7)',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: 14,
+              letterSpacing: '0.02em',
+              boxShadow: '0 4px 16px rgba(255,45,120,0.3)',
+              textDecoration: 'none',
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 24px rgba(255,45,120,0.45)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 16px rgba(255,45,120,0.3)';
+            }}
+          >
+            ⚙️ Admin Panel
+          </a>
         </nav>
 
         {/* Right Actions */}
