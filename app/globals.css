@@ -812,6 +812,66 @@ img {
   background: var(--surface);
 }
 
+/* ---------- Admin Table (Users Page) ---------- */
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.admin-table thead tr {
+  background: var(--surface-2);
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 16px 20px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+
+.admin-table th:first-child {
+  border-radius: var(--radius-md) 0 0 0;
+}
+
+.admin-table th:last-child {
+  border-radius: 0 var(--radius-md) 0 0;
+}
+
+.admin-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--fg);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.admin-table tbody tr {
+  transition: var(--transition);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 var(--radius-md);
+}
+
+.admin-table tbody tr:last-child td:last-child {
+  border-radius: 0 0 var(--radius-md) 0;
+}
+
 /* ---------- Decorative BG ---------- */
 .hero-glow {
   position: fixed;
