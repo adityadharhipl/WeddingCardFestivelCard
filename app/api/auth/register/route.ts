@@ -18,6 +18,29 @@ export async function POST(req: NextRequest) {
     // Check if user already exists
     const existing = await User.findOne({ email: email.toLowerCase().trim() });
     if (existing) {
+      const valid = await bcrypt.compare(password, existing.passwordHash);
+      if (valid) {
+        // Automatically log them in if password matches
+        const token = signToken({ email: existing.email, role: existing.role });
+        const response = NextResponse.json({
+          success: true,
+          role: existing.role,
+          isApproved: existing.isApproved,
+          message: 'Already registered! Logged in seamlessly.'
+        });
+        
+        const cookieName = existing.role === 'admin' ? 'admin_token' : 'user_token';
+        response.cookies.set(cookieName, token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 60 * 60 * 24 * 7,
+          path: '/',
+        });
+
+        return response;
+      }
+
       return NextResponse.json({ error: 'User already exists' }, { status: 409 });
     }
 
