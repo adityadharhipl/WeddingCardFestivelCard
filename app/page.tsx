@@ -954,7 +954,7 @@ export default function HomePage() {
             <button
               className="btn-icon mobile-only"
               onClick={() => setMobileMenuOpen(true)}
-              style={{ width: 44, height: 44, fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ width: 44, height: 44, fontSize: 24, alignItems: 'center', justifyContent: 'center' }}
             >
               ☰
             </button>
