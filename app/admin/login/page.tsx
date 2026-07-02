@@ -112,7 +112,9 @@ export default function AdminLoginPage() {
               }}
             >
               {loading ? (
-                <><div className="spinner" /> Signing in...</>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center' }}>
+                  <div className="spinner" /> Signing in...
+                </span>
               ) : (
                 '🔐 Sign In'
               )}
