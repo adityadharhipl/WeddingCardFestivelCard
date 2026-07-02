@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { TEMPLATE_STYLES, getNormalCardSvg } from '@/lib/templates';
+import VideoGenerator from '@/components/VideoGenerator';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 const WORDING_QUOTES: Record<string, string[]> = {
@@ -55,7 +56,7 @@ interface SiteSettings {
   defaultStyle: string;
 }
 
-type Category = 'wedding' | 'birthday' | 'anniversary' | 'housewarming' | 'god' | 'frame' | 'ai' | 'festival';
+type Category = 'wedding' | 'birthday' | 'anniversary' | 'housewarming' | 'god' | 'frame' | 'ai' | 'festival' | 'video';
 
 const TABS: { id: Category; label: string; emoji: string }[] = [
   { id: 'wedding', label: 'Wedding', emoji: '💍' },
@@ -66,6 +67,7 @@ const TABS: { id: Category; label: string; emoji: string }[] = [
   { id: 'god', label: 'God Pic 🔱', emoji: '🔱' },
   { id: 'frame', label: 'Frames 🖼️', emoji: '🖼️' },
   { id: 'ai', label: 'AI Generator', emoji: '🤖' },
+  { id: 'video', label: 'Video Maker', emoji: '🎥' },
 ];
 
 export default function HomePage() {
@@ -1412,7 +1414,12 @@ export default function HomePage() {
         padding: '0 5% 100px',
         position: 'relative', zIndex: 1,
       }} id="generator">
-        {activeTab === 'ai' ? (
+        {activeTab === 'video' ? (
+          <VideoGenerator 
+            currentUser={currentUser} 
+            onNeedLogin={() => { setAuthTab('login'); setAuthModalOpen(true); }} 
+          />
+        ) : activeTab === 'ai' ? (
           /* ─── AI Card Builder UI Workspace ─── */
           <div style={{
             display: 'flex', gap: 40, flexWrap: 'wrap',

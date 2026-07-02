@@ -11,6 +11,7 @@ const NAV = [
   { href: '/admin/gallery', icon: '🖼️', label: 'Gallery' },
   { href: '/admin/orders', icon: '💰', label: 'Payments & Orders' },
   { href: '/admin/users', icon: '👥', label: 'User Accounts' },
+  { href: '/admin/video-generator', icon: '🎥', label: 'Video Generator' },
   { href: '/admin/settings', icon: '⚙️', label: 'Settings' },
   { href: '/admin/profile', icon: '👤', label: 'Profile' },
 ];
