@@ -924,4 +924,16 @@ img {
   .site-header {
     padding: 0 16px;
   }
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+}
+
+.mobile-only {
+  display: none;
 }

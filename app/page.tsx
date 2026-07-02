@@ -92,6 +92,7 @@ export default function HomePage() {
 
   // Auth modal states
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [authTab, setAuthTab] = useState<'login' | 'register'>('login');
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
@@ -940,16 +941,113 @@ export default function HomePage() {
               </button>
             </div>
           ) : (
+              <button
+                onClick={() => { setAuthTab('login'); setAuthModalOpen(true); }}
+                className="btn-primary desktop-menu"
+                style={{ padding: '12px 28px', borderRadius: 100, fontSize: 16, fontWeight: 500 }}
+              >
+                Sign In / Register
+              </button>
+            )}
+
+            {/* Mobile Menu Toggle */}
             <button
-              onClick={() => { setAuthTab('login'); setAuthModalOpen(true); }}
-              className="btn-primary"
-              style={{ padding: '12px 28px', borderRadius: 100, fontSize: 16, fontWeight: 500 }}
+              className="btn-icon mobile-only"
+              onClick={() => setMobileMenuOpen(true)}
+              style={{ width: 44, height: 44, fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              Sign In / Register
+              ☰
             </button>
-          )}
-        </div>
-      </header>
+          </div>
+        </header>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            background: 'var(--bg)',
+            zIndex: 9999,
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '24px',
+            overflowY: 'auto'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 14,
+                  background: 'linear-gradient(135deg, var(--accent), var(--accent-2))',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: '0 8px 30px var(--accent-glow)',
+                  fontWeight: 800, fontSize: 22, color: '#fff',
+                }}>
+                  ❤️
+                </div>
+                <span style={{ fontWeight: 800, fontSize: 22, letterSpacing: '-0.02em', background: 'linear-gradient(to right, var(--fg), var(--ink-soft))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  Dwivedi's
+                </span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn-icon"
+                style={{ width: 44, height: 44, fontSize: 24 }}
+              >
+                ✕
+              </button>
+            </div>
+            
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: 24, fontSize: 20, fontWeight: 600 }}>
+              <button onClick={() => { scrollToSection('home'); setMobileMenuOpen(false); }} style={{ color: 'var(--fg)', textAlign: 'left' }}>Home</button>
+              <button onClick={() => { scrollToSection('features'); setMobileMenuOpen(false); }} style={{ color: 'var(--fg)', textAlign: 'left' }}>Services</button>
+              <button onClick={() => { scrollToSection('gallery'); setMobileMenuOpen(false); }} style={{ color: 'var(--fg)', textAlign: 'left' }}>Design Gallery</button>
+              <button
+                onClick={() => {
+                  setActiveTab('god');
+                  scrollToSection('gallery');
+                  setMobileMenuOpen(false);
+                }}
+                style={{ color: 'var(--fg)', textAlign: 'left' }}
+              >
+                Shyam Baba (God Pic) 🔱
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('frame');
+                  scrollToSection('gallery');
+                  setMobileMenuOpen(false);
+                }}
+                style={{ color: 'var(--fg)', textAlign: 'left' }}
+              >
+                Frames 🖼️
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('ai');
+                  scrollToSection('generator');
+                  setMobileMenuOpen(false);
+                }}
+                style={{ color: 'var(--accent)', textAlign: 'left' }}
+              >
+                AI Generator 🤖
+              </button>
+              
+              <a href="/admin" style={{ color: 'var(--accent)', textAlign: 'left' }}>
+                ⚙️ Admin Panel
+              </a>
+
+              {!currentUser && (
+                <button
+                  onClick={() => { setAuthTab('login'); setAuthModalOpen(true); setMobileMenuOpen(false); }}
+                  className="btn-primary"
+                  style={{ padding: '12px 28px', borderRadius: 100, fontSize: 16, fontWeight: 500, marginTop: 16 }}
+                >
+                  Sign In / Register
+                </button>
+              )}
+            </nav>
+          </div>
+        )}
 
       {/* ─── Hero Section with budget package calculator ──── */}
       <section style={{
