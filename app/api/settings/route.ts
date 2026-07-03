@@ -11,6 +11,7 @@ export async function GET() {
     if (!settings) {
       settings = await Settings.create({
         isPremium: false,
+        enableMultiPageCard: true,
         upiId: '',
         siteName: "Dwivedi's Enterprise",
         upiName: 'Dwivedi Store',

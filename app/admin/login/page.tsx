@@ -8,6 +8,7 @@ export default function AdminLoginPage() {
   const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     document.body.className = 'dark';
@@ -91,14 +92,35 @@ export default function AdminLoginPage() {
             </div>
             <div>
               <label className="label">Password</label>
-              <input
-                className="input-field"
-                type="password"
-                placeholder="••••••••"
-                value={form.password}
-                onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
-                required
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  className="input-field"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={form.password}
+                  onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
+                  required
+                  style={{ paddingRight: 40 }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--ink-soft)',
+                    cursor: 'pointer',
+                    fontSize: 16,
+                  }}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? '👁️‍🗨️' : '👁️'}
+                </button>
+              </div>
             </div>
             <button
               type="submit"

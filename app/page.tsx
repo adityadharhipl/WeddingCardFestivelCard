@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { TEMPLATE_STYLES, getNormalCardSvg } from '@/lib/templates';
 import VideoGenerator from '@/components/VideoGenerator';
+import MultiPageGenerator from '@/components/MultiPageGenerator';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 const WORDING_QUOTES: Record<string, string[]> = {
@@ -47,6 +48,7 @@ interface CartItem extends GalleryImage {
 
 interface SiteSettings {
   isPremium: boolean;
+  enableMultiPageCard?: boolean;
   upiId: string;
   siteName: string;
   upiName: string;
@@ -56,9 +58,9 @@ interface SiteSettings {
   defaultStyle: string;
 }
 
-type Category = 'wedding' | 'birthday' | 'anniversary' | 'housewarming' | 'god' | 'frame' | 'ai' | 'festival' | 'video';
+type Category = 'wedding' | 'birthday' | 'anniversary' | 'housewarming' | 'god' | 'frame' | 'ai' | 'festival' | 'video' | 'multi-page';
 
-const TABS: { id: Category; label: string; emoji: string }[] = [
+const ALL_TABS: { id: Category; label: string; emoji: string }[] = [
   { id: 'wedding', label: 'Wedding', emoji: '💍' },
   { id: 'birthday', label: 'Birthday', emoji: '🎂' },
   { id: 'anniversary', label: 'Anniversary', emoji: '🌹' },
@@ -68,6 +70,7 @@ const TABS: { id: Category; label: string; emoji: string }[] = [
   { id: 'frame', label: 'Frames 🖼️', emoji: '🖼️' },
   { id: 'ai', label: 'AI Generator', emoji: '🤖' },
   { id: 'video', label: 'Video Maker', emoji: '🎥' },
+  { id: 'multi-page', label: 'Multi-Page Card', emoji: '📖' },
 ];
 
 export default function HomePage() {
@@ -214,6 +217,8 @@ export default function HomePage() {
   ]);
 
   const packageTotal = packageItems.reduce((sum, item) => sum + (item.checked ? item.price : 0), 0);
+
+  const TABS = ALL_TABS.filter(tab => tab.id !== 'multi-page' || settings?.enableMultiPageCard);
 
   // Theme Sync effect
   useEffect(() => {
@@ -820,19 +825,14 @@ export default function HomePage() {
         </div>
 
         {/* Menu Nav Links with Scroll to Anchor (Mockup style settings: 16px, 500 weight) */}
-        <nav style={{ display: 'flex', gap: 32, alignItems: 'center', margin: '0 auto' }} className="desktop-menu">
-          <button onClick={() => scrollToSection('home')} style={{ color: 'var(--fg)', fontWeight: 600, fontSize: 16, transition: 'var(--transition)' }}>
+        <nav style={{ display: 'flex', gap: 20, alignItems: 'center', margin: '0 auto' }} className="desktop-menu">
+          <button onClick={() => scrollToSection('home')} style={{ color: 'var(--fg)', fontWeight: 600, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}>
             Home
           </button>
-          <button onClick={() => scrollToSection('features')} style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 16, transition: 'var(--transition)' }}>
+          <button onClick={() => scrollToSection('features')} style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}>
             Services
           </button>
-          {/* 
-          <button onClick={() => scrollToSection('calculator')} style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 16, transition: 'var(--transition)' }}>
-            Budget Estimator
-          </button>
-          */}
-          <button onClick={() => scrollToSection('gallery')} style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 16, transition: 'var(--transition)' }}>
+          <button onClick={() => scrollToSection('gallery')} style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}>
             Design Gallery
           </button>
           <button
@@ -840,7 +840,7 @@ export default function HomePage() {
               setActiveTab('god');
               scrollToSection('gallery');
             }}
-            style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 16, transition: 'var(--transition)' }}
+            style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}
           >
             Shyam Baba (God Pic) 🔱
           </button>
@@ -849,7 +849,7 @@ export default function HomePage() {
               setActiveTab('frame');
               scrollToSection('gallery');
             }}
-            style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 16, transition: 'var(--transition)' }}
+            style={{ color: 'var(--ink-soft)', fontWeight: 500, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}
           >
             Frames 🖼️
           </button>
@@ -858,7 +858,7 @@ export default function HomePage() {
               setActiveTab('ai');
               scrollToSection('generator');
             }}
-            style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 16, transition: 'var(--transition)' }}
+            style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 15, transition: 'var(--transition)', whiteSpace: 'nowrap' }}
           >
             AI Generator 🤖
           </button>
@@ -878,6 +878,7 @@ export default function HomePage() {
               boxShadow: '0 4px 16px rgba(255,45,120,0.3)',
               textDecoration: 'none',
               transition: 'all 0.25s ease',
+              whiteSpace: 'nowrap',
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
@@ -946,7 +947,7 @@ export default function HomePage() {
               <button
                 onClick={() => { setAuthTab('login'); setAuthModalOpen(true); }}
                 className="btn-primary desktop-menu"
-                style={{ padding: '12px 28px', borderRadius: 100, fontSize: 16, fontWeight: 500 }}
+                style={{ padding: '12px 28px', borderRadius: 100, fontSize: 16, fontWeight: 500, whiteSpace: 'nowrap' }}
               >
                 Sign In / Register
               </button>
@@ -1418,6 +1419,11 @@ export default function HomePage() {
           <VideoGenerator 
             currentUser={currentUser} 
             onNeedLogin={() => { setAuthTab('login'); setAuthModalOpen(true); }} 
+          />
+        ) : activeTab === 'multi-page' ? (
+          <MultiPageGenerator
+            currentUser={currentUser}
+            onNeedLogin={() => { setAuthTab('login'); setAuthModalOpen(true); }}
           />
         ) : activeTab === 'ai' ? (
           /* ─── AI Card Builder UI Workspace ─── */

@@ -63,7 +63,14 @@ function getNormalCardSvgBase(
           <circle cx="80" cy="1120" r="10" fill="none" stroke="#D4AF37" stroke-width="2"/>
           <circle cx="720" cy="1120" r="10" fill="none" stroke="#D4AF37" stroke-width="2"/>
           <text x="50%" y="220" text-anchor="middle" fill="#ff2d78" font-family="'Outfit', sans-serif" font-size="24" font-weight="600" letter-spacing="4">${event}</text>
-          <text x="50%" y="320" text-anchor="middle" fill="#D4AF37" font-family="'Outfit', sans-serif" font-size="64" font-weight="800">👑</text>
+          <g transform="translate(400, 310) scale(1.8)" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M -15 -10 Q 0 -35 15 -10 C 20 0 10 20 0 25 C -10 20 -20 0 -15 -10 Z"/>
+            <path d="M 0 -15 Q -10 -5 -5 10 Q 0 25 10 10"/>
+            <circle cx="-5" cy="-18" r="2" fill="#D4AF37"/>
+            <circle cx="5" cy="-18" r="2" fill="#D4AF37"/>
+            <path d="M -22 -8 Q -30 -10 -25 -20 Q -15 -22 -15 -10"/>
+            <path d="M 22 -8 Q 30 -10 25 -20 Q 15 -22 15 -10"/>
+          </g>
           <text x="50%" y="460" text-anchor="middle" fill="#ffffffa0" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" letter-spacing="2">TOGETHER WITH THEIR FAMILIES</text>
           <text x="50%" y="500" text-anchor="middle" fill="#ffffffa0" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" letter-spacing="2">WE REQUEST THE HONOR OF YOUR PRESENCE AT THE CELEBRATION OF</text>
           <text x="50%" y="650" text-anchor="middle" fill="#D4AF37" font-family="'Outfit', sans-serif" font-size="46" font-weight="800" letter-spacing="2">${names}</text>

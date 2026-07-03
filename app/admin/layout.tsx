@@ -94,7 +94,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         '--border-soft': 'rgba(255, 255, 255, 0.1)',
         '--shadow-soft': '0 30px 80px rgba(0, 0, 0, 0.5)',
       } as React.CSSProperties}
-      className="dark"
+      className="dark admin-layout"
     >
       {/* ─── Sidebar ──────────────────────────────────────────────── */}
       <nav className="admin-sidebar">

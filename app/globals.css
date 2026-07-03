@@ -902,6 +902,10 @@ img {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+
   .admin-sidebar {
     width: 100%;
     min-height: auto;

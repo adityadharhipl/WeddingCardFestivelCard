@@ -116,6 +116,28 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
+      {/* Multi-Page Card Section */}
+      <div className="glass" style={{ padding: 28, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
+          <div>
+            <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>
+              📖 Multi-Page Wedding Card
+            </h2>
+            <p style={{ color: 'var(--ink-soft)', fontSize: 13, lineHeight: 1.6 }}>
+              Enable the 4-page wedding card feature on the public site. Allows users to create a multi-page invitation (Cover, Bride/Groom, Events, RSVP).
+            </p>
+          </div>
+          <label className="toggle" style={{ flexShrink: 0, marginTop: 4 }}>
+            <input
+              type="checkbox"
+              checked={settings.enableMultiPageCard}
+              onChange={e => setSettings(p => ({ ...p, enableMultiPageCard: e.target.checked }))}
+            />
+            <span className="toggle-slider" />
+          </label>
+        </div>
+      </div>
+
       {/* UPI Payment Settings */}
       <div className="glass" style={{ padding: 28, marginBottom: 20 }}>
         <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>💳 UPI Payment Details</h2>
