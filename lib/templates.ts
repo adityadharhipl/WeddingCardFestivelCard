@@ -63,14 +63,7 @@ function getNormalCardSvgBase(
           <circle cx="80" cy="1120" r="10" fill="none" stroke="#D4AF37" stroke-width="2"/>
           <circle cx="720" cy="1120" r="10" fill="none" stroke="#D4AF37" stroke-width="2"/>
           <text x="50%" y="220" text-anchor="middle" fill="#ff2d78" font-family="'Outfit', sans-serif" font-size="24" font-weight="600" letter-spacing="4">${event}</text>
-          <g transform="translate(400, 310) scale(1.8)" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round">
-            <path d="M -15 -10 Q 0 -35 15 -10 C 20 0 10 20 0 25 C -10 20 -20 0 -15 -10 Z"/>
-            <path d="M 0 -15 Q -10 -5 -5 10 Q 0 25 10 10"/>
-            <circle cx="-5" cy="-18" r="2" fill="#D4AF37"/>
-            <circle cx="5" cy="-18" r="2" fill="#D4AF37"/>
-            <path d="M -22 -8 Q -30 -10 -25 -20 Q -15 -22 -15 -10"/>
-            <path d="M 22 -8 Q 30 -10 25 -20 Q 15 -22 15 -10"/>
-          </g>
+          <image href="/ganpati.png" x="340" y="230" width="120" height="120" preserveAspectRatio="xMidYMid meet" />
           <text x="50%" y="460" text-anchor="middle" fill="#ffffffa0" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" letter-spacing="2">TOGETHER WITH THEIR FAMILIES</text>
           <text x="50%" y="500" text-anchor="middle" fill="#ffffffa0" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" letter-spacing="2">WE REQUEST THE HONOR OF YOUR PRESENCE AT THE CELEBRATION OF</text>
           <text x="50%" y="650" text-anchor="middle" fill="#D4AF37" font-family="'Outfit', sans-serif" font-size="46" font-weight="800" letter-spacing="2">${names}</text>
@@ -111,12 +104,7 @@ function getNormalCardSvgBase(
           <rect x="40" y="40" width="720" height="1120" fill="none" stroke="#D4AF37" stroke-width="3" rx="15"/>
           <path d="M 40 80 Q 200 120 360 80 Q 520 120 760 80" fill="none" stroke="#f59e0b" stroke-width="8" stroke-dasharray="15, 10"/>
           <text x="50%" y="220" text-anchor="middle" fill="#f59e0b" font-family="'Outfit', sans-serif" font-size="28" font-weight="800" letter-spacing="4">GRIHA PRAVESH INVITATION</text>
-          <g transform="translate(400, 370) scale(1.5)">
-            <ellipse cx="0" cy="0" rx="35" ry="30" fill="none" stroke="#D4AF37" stroke-width="3"/>
-            <path d="M -20 -28 C -10 -40, 10 -40, 20 -28" fill="none" stroke="#D4AF37" stroke-width="3"/>
-            <path d="M -15 -35 L 0 -60 L 15 -35 Z" fill="#D4AF37"/>
-            <path d="M -30 -30 L -45 -45 M 30 -30 L 45 -45" stroke="#D4AF37" stroke-width="3"/>
-          </g>
+          <image href="/ganpati.png" x="340" y="280" width="120" height="120" preserveAspectRatio="xMidYMid meet" />
           <text x="50%" y="540" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" letter-spacing="2">WE INIVTE YOU TO GRACE THE AUSPICIOUS OCCASION OF THE HOUSEWARMING OF</text>
           <text x="50%" y="660" text-anchor="middle" fill="#D4AF37" font-family="'Outfit', sans-serif" font-size="42" font-weight="900" letter-spacing="1">${names}</text>
           <line x1="200" y1="730" x2="600" y2="730" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.5"/>
@@ -256,7 +244,8 @@ function getNormalCardSvgBase(
           <rect x="40" y="40" width="720" height="1120" fill="none" stroke="#D4AF37" stroke-width="3" rx="15"/>
           <path d="M 40 60 L 760 60" stroke="#f97316" stroke-width="12" stroke-dasharray="14, 14" stroke-linecap="round"/>
           <path d="M 40 60 L 760 60" stroke="#eab308" stroke-width="12" stroke-dasharray="14, 14" stroke-dashoffset="14" stroke-linecap="round"/>
-          <g transform="translate(400, 320) scale(1.5)" stroke="#D4AF37" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <image href="/ganpati.png" x="340" y="240" width="120" height="120" preserveAspectRatio="xMidYMid meet" />
+          <g transform="translate(400, 420) scale(1.5)" stroke="#D4AF37" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path d="M -30 0 L 30 0"/>
             <path d="M 0 -30 L 0 30"/>
             <path d="M -30 0 L -30 -30"/>
@@ -293,14 +282,7 @@ function getNormalCardSvgBase(
           <path d="M 440 80 Q 600 110 760 80" fill="none" stroke="#f97316" stroke-width="6" stroke-dasharray="10, 8"/>
           
           <!-- Ganesh Icon Representation -->
-          <g transform="translate(400, 240) scale(1.4)" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round">
-            <path d="M -15 -10 Q 0 -35 15 -10 C 20 0 10 20 0 25 C -10 20 -20 0 -15 -10 Z"/>
-            <path d="M 0 -15 Q -10 -5 -5 10 Q 0 25 10 10"/>
-            <circle cx="-5" cy="-18" r="2" fill="#D4AF37"/>
-            <circle cx="5" cy="-18" r="2" fill="#D4AF37"/>
-            <path d="M -22 -8 Q -30 -10 -25 -20 Q -15 -22 -15 -10"/>
-            <path d="M 22 -8 Q 30 -10 25 -20 Q 15 -22 15 -10"/>
-          </g>
+          <image href="/ganpati.png" x="340" y="160" width="120" height="120" preserveAspectRatio="xMidYMid meet" />
 
           <text x="50%" y="380" text-anchor="middle" fill="#D4AF37" font-family="'Outfit', sans-serif" font-size="28" font-weight="900" letter-spacing="4">SHUBH VIVAH</text>
           <text x="50%" y="460" text-anchor="middle" fill="#ffffffd0" font-family="'Outfit', sans-serif" font-size="16" letter-spacing="1">WE INVITE YOU TO JOIN US ON THE AUSPICIOUS CELEBRATION OF WEDDING</text>
