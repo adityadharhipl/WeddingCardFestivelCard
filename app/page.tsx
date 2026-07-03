@@ -200,7 +200,8 @@ export default function HomePage() {
     date: 'November 26, 2026 at 7:00 PM',
     venue: 'Royal Orchid Banquet, New Delhi',
     theme: 'Luxury Gold & Black',
-    selectedStyle: 'royal_gold'
+    selectedStyle: 'royal_gold',
+    wishingOn: ''
   });
   const [generatedSvg, setGeneratedSvg] = useState<string>('');
   const [generatingAi, setGeneratingAi] = useState(false);
@@ -1483,6 +1484,21 @@ export default function HomePage() {
                     <option>Birthday Card</option>
                     <option>Anniversary Invitation</option>
                     <option>Housewarming Invitation</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="label">Wishing On (For Card Heading)</label>
+                  <select
+                    className="select-field"
+                    value={aiForm.wishingOn || ''}
+                    onChange={e => setAiForm(p => ({ ...p, wishingOn: e.target.value }))}
+                  >
+                    <option value="">Default (Uses Event Category)</option>
+                    <option value="Wedding Invitation">Wedding Invitation</option>
+                    <option value="Happy Birthday">Happy Birthday</option>
+                    <option value="Happy Anniversary">Happy Anniversary</option>
+                    <option value="Griha Pravesh">Griha Pravesh</option>
                   </select>
                 </div>
 
