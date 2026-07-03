@@ -6,6 +6,8 @@ import { TEMPLATE_STYLES } from '@/lib/templates';
 
 interface Settings {
   isPremium: boolean;
+  enableMultiPageCard: boolean;
+  googleLogin: boolean;
   upiId: string;
   siteName: string;
   upiName: string;
@@ -18,6 +20,8 @@ interface Settings {
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<Settings>({
     isPremium: false,
+    enableMultiPageCard: true,
+    googleLogin: false,
     upiId: '',
     siteName: "Dwivedi's",
     upiName: "Dwivedi's Store",
@@ -132,6 +136,28 @@ export default function AdminSettingsPage() {
               type="checkbox"
               checked={settings.enableMultiPageCard}
               onChange={e => setSettings(p => ({ ...p, enableMultiPageCard: e.target.checked }))}
+            />
+            <span className="toggle-slider" />
+          </label>
+        </div>
+      </div>
+
+      {/* Google Login Section */}
+      <div className="glass" style={{ padding: 28, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
+          <div>
+            <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>
+              🔐 Google Login
+            </h2>
+            <p style={{ color: 'var(--ink-soft)', fontSize: 13, lineHeight: 1.6 }}>
+              Enable Google Login for user authentication.
+            </p>
+          </div>
+          <label className="toggle" style={{ flexShrink: 0, marginTop: 4 }}>
+            <input
+              type="checkbox"
+              checked={settings.googleLogin}
+              onChange={e => setSettings(p => ({ ...p, googleLogin: e.target.checked }))}
             />
             <span className="toggle-slider" />
           </label>

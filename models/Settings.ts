@@ -4,6 +4,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 export interface ISettings extends Document {
   isPremium: boolean;
   enableMultiPageCard: boolean;
+  googleLogin: boolean;
   upiId: string;
   siteName: string;
   upiName: string;
@@ -16,6 +17,7 @@ export interface ISettings extends Document {
 const SettingsSchema: Schema<ISettings> = new mongoose.Schema({
   isPremium: { type: Boolean, default: false },
   enableMultiPageCard: { type: Boolean, default: true },
+  googleLogin: { type: Boolean, default: false },
   upiId: { type: String, default: '' },
   siteName: {
     type: String, default: "Dwivedi's Enterprise" },
